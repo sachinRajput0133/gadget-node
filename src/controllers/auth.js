@@ -31,9 +31,10 @@ exports.register = asyncHandler(async (req, res, next) => {
 // @access  Public
 exports.login = asyncHandler(async (req, res, next) => {
   const { email, password } = req.body;
-
+  console.log("🚀 ~ exports.login=asyncHandler ~ user:")
   // Check if user exists
   const user = await User.findOne({ email }).select('+password');
+ 
   if (!user) {
     return next(new ErrorResponse('Invalid credentials', 401));
   }
