@@ -54,18 +54,17 @@ exports.getArticles = asyncHandler(async (req, res, next) => {
 
   // Populate
   if (req.query.populate) {
-    const popFields = req.query.populate.split(',');
-    popFields.forEach(field => {
+    const fields = req.query.populate.split(',');
+    fields.forEach(field => {
       query = query.populate(field);
     });
   } else {
-    query = query.populate({
-      path: 'category',
-      select: 'title slug'
-    }).populate({
-      path: 'author',
-      select: 'name'
-    });
+    // Default populate
+    query = query.populate([
+      { path: 'category', select: 'name slug' },
+      { path: 'section', select: 'name slug' },
+      { path: 'author', select: 'name' }
+    ]);
   }
 
   // Executing query
@@ -92,23 +91,22 @@ exports.getArticles = asyncHandler(async (req, res, next) => {
     success: true,
     count: articles.length,
     pagination,
+    total,
     data: articles
   });
 });
 
-// @desc    Get single article
-// @route   GET /api/articles/:slug
+// @desc    Get single article by slug
+// @route   GET /api/articles/slug/:slug
 // @access  Public
-exports.getArticle = asyncHandler(async (req, res, next) => {
+exports.getArticleBySlug = asyncHandler(async (req, res, next) => {
   const article = await Article.findOne({ slug: req.params.slug })
-    .populate({
-      path: 'category',
-      select: 'title slug'
-    })
-    .populate({
-      path: 'author',
-      select: 'name'
-    });
+    .populate([
+      { path: 'category', select: 'name slug' },
+      { path: 'section', select: 'name slug' },
+      { path: 'author', select: 'name' },
+      { path: 'comments' }
+    ]);
 
   if (!article) {
     return next(
@@ -116,9 +114,33 @@ exports.getArticle = asyncHandler(async (req, res, next) => {
     );
   }
 
-  // Increment views
-  article.views += 1;
+  // Increment view count
+  article.viewCount += 1;
   await article.save();
+
+  res.status(200).json({
+    success: true,
+    data: article
+  });
+});
+
+// @desc    Get single article by ID
+// @route   GET /api/articles/:id
+// @access  Public
+exports.getArticleById = asyncHandler(async (req, res, next) => {
+  const article = await Article.findById(req.params.id)
+    .populate([
+      { path: 'category', select: 'name slug' },
+      { path: 'section', select: 'name slug' },
+      { path: 'author', select: 'name' },
+      { path: 'comments' }
+    ]);
+
+  if (!article) {
+    return next(
+      new ErrorResponse(`Article not found with id of ${req.params.id}`, 404)
+    );
+  }
 
   res.status(200).json({
     success: true,
@@ -130,29 +152,21 @@ exports.getArticle = asyncHandler(async (req, res, next) => {
 // @route   POST /api/articles
 // @access  Private/Admin
 exports.createArticle = asyncHandler(async (req, res, next) => {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return next(new ErrorResponse('Validation error', 400, errors.array()));
-  }
-
-  // Add author to req.body
+  // Add user to req.body
   req.body.author = req.user.id;
 
-  // Check if category exists
-  if (req.body.category) {
-    const category = await Category.findById(req.body.category);
-    if (!category) {
-      return next(
-        new ErrorResponse(`Category not found with id of ${req.body.category}`, 404)
-      );
-    }
+  // Check for validation errors
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ success: false, errors: errors.array() });
   }
 
   // Create slug from title if not provided
-  if (!req.body.slug) {
-    req.body.slug = slugify(req.body.title, { lower: true });
+  if (!req.body.slug && req.body.title) {
+    req.body.slug = slugify(req.body.title, { lower: true, strict: true });
   }
 
+  // Create article
   const article = await Article.create(req.body);
 
   res.status(201).json({
@@ -162,36 +176,30 @@ exports.createArticle = asyncHandler(async (req, res, next) => {
 });
 
 // @desc    Update article
-// @route   PUT /api/articles/:slug
+// @route   PUT /api/articles/:id
 // @access  Private/Admin
 exports.updateArticle = asyncHandler(async (req, res, next) => {
-  let article = await Article.findOne({ slug: req.params.slug });
+  let article = await Article.findById(req.params.id);
 
   if (!article) {
     return next(
-      new ErrorResponse(`Article not found with slug of ${req.params.slug}`, 404)
+      new ErrorResponse(`Article not found with id of ${req.params.id}`, 404)
     );
   }
 
-  // Check if category exists if updating category
-  if (req.body.category) {
-    const category = await Category.findById(req.body.category);
-    if (!category) {
-      return next(
-        new ErrorResponse(`Category not found with id of ${req.body.category}`, 404)
-      );
-    }
+  // Check for validation errors
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ success: false, errors: errors.array() });
   }
 
-  // Create new slug if title is updated and slug is not provided
-  if (req.body.title && !req.body.slug) {
-    req.body.slug = slugify(req.body.title, { lower: true });
+  // Update slug if title is changed
+  if (req.body.title && req.body.title !== article.title) {
+    req.body.slug = slugify(req.body.title, { lower: true, strict: true });
   }
 
-  // Update updatedAt timestamp
-  req.body.updatedAt = Date.now();
-
-  article = await Article.findOneAndUpdate({ slug: req.params.slug }, req.body, {
+  // Update article
+  article = await Article.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
     runValidators: true
   });
@@ -203,18 +211,19 @@ exports.updateArticle = asyncHandler(async (req, res, next) => {
 });
 
 // @desc    Delete article
-// @route   DELETE /api/articles/:slug
+// @route   DELETE /api/articles/:id
 // @access  Private/Admin
 exports.deleteArticle = asyncHandler(async (req, res, next) => {
-  const article = await Article.findOne({ slug: req.params.slug });
+  const article = await Article.findById(req.params.id);
 
   if (!article) {
     return next(
-      new ErrorResponse(`Article not found with slug of ${req.params.slug}`, 404)
+      new ErrorResponse(`Article not found with id of ${req.params.id}`, 404)
     );
   }
 
-  await Article.deleteOne({ _id: article._id });
+  // Use remove to trigger middleware
+  await article.remove();
 
   res.status(200).json({
     success: true,
@@ -222,116 +231,21 @@ exports.deleteArticle = asyncHandler(async (req, res, next) => {
   });
 });
 
-// @desc    Get articles by category
-// @route   GET /api/categories/:categorySlug/articles
-// @access  Public
-exports.getArticlesByCategory = asyncHandler(async (req, res, next) => {
-  const category = await Category.findOne({ slug: req.params.categorySlug });
-
-  if (!category) {
-    return next(
-      new ErrorResponse(`Category not found with slug of ${req.params.categorySlug}`, 404)
-    );
-  }
-
-  const articles = await Article.find({ category: category._id })
-    .populate({
-      path: 'category',
-      select: 'title slug'
-    })
-    .populate({
-      path: 'author',
-      select: 'name'
-    })
-    .sort('-createdAt');
-
-  res.status(200).json({
-    success: true,
-    count: articles.length,
-    data: articles
-  });
-});
-
-// @desc    Get featured articles
-// @route   GET /api/articles/featured
-// @access  Public
-exports.getFeaturedArticles = asyncHandler(async (req, res, next) => {
-  const limit = parseInt(req.query.limit, 10) || 5;
-
-  const articles = await Article.find({ status: 'published', featured: true })
-    .limit(limit)
-    .populate({
-      path: 'category',
-      select: 'title slug'
-    })
-    .populate({
-      path: 'author',
-      select: 'name'
-    })
-    .sort('-createdAt');
-
-  res.status(200).json({
-    success: true,
-    count: articles.length,
-    data: articles
-  });
-});
-
-// @desc    Toggle article featured status
-// @route   PUT /api/articles/:slug/featured
+// @desc    Toggle article publish status
+// @route   PATCH /api/articles/:id/toggle-status
 // @access  Private/Admin
-exports.toggleFeatured = asyncHandler(async (req, res, next) => {
-  let article = await Article.findOne({ slug: req.params.slug });
+exports.toggleArticleStatus = asyncHandler(async (req, res, next) => {
+  const article = await Article.findById(req.params.id);
 
   if (!article) {
     return next(
-      new ErrorResponse(`Article not found with slug of ${req.params.slug}`, 404)
+      new ErrorResponse(`Article not found with id of ${req.params.id}`, 404)
     );
   }
 
-  article = await Article.findOneAndUpdate(
-    { slug: req.params.slug },
-    { featured: !article.featured },
-    {
-      new: true,
-      runValidators: true
-    }
-  );
-
-  res.status(200).json({
-    success: true,
-    data: article
-  });
-});
-
-// @desc    Update article status
-// @route   PUT /api/articles/:slug/status
-// @access  Private/Admin
-exports.updateStatus = asyncHandler(async (req, res, next) => {
-  const { status } = req.body;
-
-  if (!status || !['draft', 'published', 'archived'].includes(status)) {
-    return next(
-      new ErrorResponse('Please provide a valid status (draft, published, archived)', 400)
-    );
-  }
-
-  let article = await Article.findOne({ slug: req.params.slug });
-
-  if (!article) {
-    return next(
-      new ErrorResponse(`Article not found with slug of ${req.params.slug}`, 404)
-    );
-  }
-
-  article = await Article.findOneAndUpdate(
-    { slug: req.params.slug },
-    { status },
-    {
-      new: true,
-      runValidators: true
-    }
-  );
+  // Toggle isPublished status
+  article.isPublished = !article.isPublished;
+  await article.save();
 
   res.status(200).json({
     success: true,

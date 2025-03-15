@@ -4,7 +4,7 @@
   "description": "Backend server for the Gadget Review Platform",
   "main": "src/server.js",
   "scripts": {
-    "start": "node src/server.js",
+    "start": "nodemon src/server.js",
     "dev": "nodemon src/server.js",
     "test": "jest"
   },

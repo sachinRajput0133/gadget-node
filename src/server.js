@@ -40,11 +40,11 @@ app.use(helmet());
 app.use(xss());
 
 // Rate limiting
-const limiter = rateLimit({
-  windowMs: 10 * 60 * 1000, // 10 minutes
-  max: 100 // limit each IP to 100 requests per windowMs
-});
-app.use(limiter);
+// const limiter = rateLimit({
+//   windowMs: 10 * 60 * 1000, // 10 minutes
+//   max: 100 // limit each IP to 100 requests per windowMs
+// });
+// app.use(limiter);
 
 // Prevent http param pollution
 app.use(hpp());
@@ -70,7 +70,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/reviews', require('./routes/reviews'));
 app.use('/api/categories', require('./routes/categories'));
-
+app.use('/api/roles', require('./routes/roles'));
+app.use('/api/permissions', require('./routes/permissions'));
+app.use('/api/users', require('./routes/users'));
+app.use('/api/sections', require('./routes/sections'));
+// app.use('/api/uploads', require('./routes/uploads'));
+app.use('/api/articles', require('./routes/articles'));
 // Re-route comment routes
 app.use('/api/reviews/:reviewSlug/comments', require('./routes/comments'));
 app.use('/api/comments', require('./routes/comments'));
@@ -86,6 +91,13 @@ app.get('/api/docs', (req, res) => {
         login: 'POST /api/auth/login', 
         logout: 'POST /api/auth/logout',
         getMe: 'GET /api/auth/me'
+      },
+      roles: {
+        getAll: 'GET /api/roles',
+        getSingle: 'GET /api/roles/:id',
+        create: 'POST /api/roles',
+        update: 'PUT /api/roles/:id',
+        delete: 'DELETE /api/roles/:id'
       },
       reviews: {
         getAll: 'GET /api/reviews',

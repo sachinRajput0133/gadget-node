@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const { ref } = require('joi');
 
 const UserSchema = new mongoose.Schema(
   {
@@ -19,16 +20,23 @@ const UserSchema = new mongoose.Schema(
         'Please add a valid email',
       ],
     },
+    isActive: {
+      type: Boolean,
+      default: true,
+    },
+    lastLogin: {  
+      type: Date,
+      default: Date.now,
+    },
     password: {
       type: String,
       required: [true, 'Please add a password'],
       minlength: 6,
       select: false,
     },
-    role: {
-      type: String,
-      enum: ['user', 'admin'],
-      default: 'user',
+    roleId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Role',
     },
     avatar: {
       type: String,
@@ -62,7 +70,7 @@ UserSchema.methods.getSignedJwtToken = function () {
 };
 
 // Match user entered password to hashed password in database
-UserSchema.methods.matchPassword = async function (enteredPassword) {
+UserSchema.methods.isMatchPassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
 };
 

@@ -59,13 +59,13 @@ exports.getSections = asyncHandler(async (req, res, next) => {
       query = query.populate(field);
     });
   } else {
-    query = query.populate({
-      path: 'Category',
-      select: 'title slug'
-    }).populate({
-      path: 'Article',
-      select: 'title slug images'
-    });
+    // query = query.populate({
+    //   path: 'Category',
+    //   select: 'title slug'
+    // }).populate({
+    //   path: 'Article',
+    //   select: 'title slug images'
+    // });
   }
 
   // Executing query

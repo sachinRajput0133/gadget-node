@@ -1,13 +1,29 @@
 const express = require('express');
-const router = express.Router();
-const { register, login, logout, getMe } = require('../controllers/auth');
-const { protect } = require('../middleware/auth');
-const validate = require('../middleware/validate');
-const { registerSchema, loginSchema } = require('../validations/authValidation');
+const {
+  register,
+  login,
+  logout,
+  getMe,
+  updateDetails,
+  updatePassword,
+  getUserPermissions
+} = require('../controllers/auth');
 
-router.post('/register', validate(registerSchema), register);
-router.post('/login', validate(loginSchema), login);
-router.post('/logout', protect, logout);
-router.get('/me', protect, getMe);
+const router = express.Router();
+
+// Import middleware
+const { protect } = require('../middleware/auth');
+
+// Public routes
+router.post('/register', register);
+router.post('/login', login);
+router.get('/logout', logout);
+
+// Protected routes
+router.use(protect);
+router.get('/me', getMe);
+router.put('/updatedetails', updateDetails);
+router.put('/updatepassword', updatePassword);
+router.get('/permissions', getUserPermissions);
 
 module.exports = router;
