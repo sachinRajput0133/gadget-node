@@ -1,0 +1,23 @@
+{
+  "employer": {
+    "create": "Employer berhasil dibuat.",
+    "createError": "Employer berhasil ditemukan.",
+    "delete": "Perusahaan telah berhasil dihapus.",
+    "cannotDelete": "Anda tidak dapat menghapus perusahaan ini karena tidak diizinkan.",
+    "update": "Employer berhasil diupdate.",
+    "get": "Perusahaan berhasil diambil.",
+    "gerError": "Employer tidak dapat ditemukan!",
+    "getList": "Semua perusahaan berhasil diambil.",
+    "view": "Perusahaan berhasil diambil.",
+    "companyUpdate": "Informasi perusahaan berhasil diperbarui.",
+    "companyGet": "Perusahaan berhasil diambil.",
+    "addMember": "Anggota tim berhasil ditambahkan.",
+    "getMemberList": "Semua anggota tim berhasil diambil.",
+    "updateMember": "Anggota tim berhasil diperbarui.",
+    "activate": "Anggota berhasil diaktifkan.",
+    "deActivate": "Anggota berhasil dinonaktifkan.",
+    "deleteMember": "Anggota tim berhasil dihapus.",
+    "import": "Proses impor selesai secara normal.",
+    "importError": "Proses impor gagal."
+  }
+}

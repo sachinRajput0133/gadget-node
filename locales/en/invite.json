@@ -1,0 +1,7 @@
+{
+  "invite": {
+    "invitedSuccessfully": "Candidate invited successfully.",
+    "viewed":"viewed mail successfully",
+    "mailAlreadyOpened":"Mail already opened"
+  }
+}

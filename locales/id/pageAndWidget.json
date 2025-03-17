@@ -1,0 +1,28 @@
+{
+  "widget": {
+    "update": "Widget berhasil diperbarui",
+    "getWidgetTypes": "Semua Widget Types telah berhasil dimiliki.",
+    "getSelectionTypes": "Semua Selection Types telah berhasil dimiliki.",
+    "getAll": "Semua widgets telah berhasil dimiliki.",
+    "create": "Widget berhasil dibuat.",
+    "partialUpdate": "Widget berhasil diperbarui.",
+    "delete": "Widget berhasil dihapus.",
+    "getCollectionData": "Colelction Data telah berhasil dimiliki."
+  },
+  "page": {
+    "getAll": "Semua pages telah berhasil dimiliki.",
+    "create": "Page berhasil dibuat.",
+    "update": "Page berhasil diperbarui.",
+    "delete": "Halaman telah berhasil dihapus."
+  },
+  "item": {
+    "getAll": "Semua item telah berhasil dimiliki.",
+    "create": "Item telah berhasil dibuat.",
+    "update": "Item telah berhasil diperbarui.",
+    "delete": "Item telah berhasil dihapus."
+  },
+  "user": {
+    "getWidgetData": "Semua data telah berhasil dimiliki.",
+    "getPageData": "Semua data telah berhasil dimiliki."
+  }
+}

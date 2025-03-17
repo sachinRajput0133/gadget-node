@@ -1,0 +1,11 @@
+{
+  "licence": {
+    "create": "Lisensi berhasil dibuat.",
+    "delete": "Lisensi berhasil dihapus.",
+    "update": "Lisensi berhasil diperbarui.",
+    "activityUpdate": "Status berlangganan diubah.",
+    "defaultStatusUpdate": "Paket subscription diset sebagai default.",
+    "deleteError": "Anda tidak dapat menghapus pake subscription ini.",
+    "plansList": "Mengambil semua langganan yang diaktifkan."
+  }
+}

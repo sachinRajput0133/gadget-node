@@ -17,17 +17,17 @@ router.post(
   sectionsController.createSection
 );
 
-// router.put(
-//   '/:id',
-//   hasPermission('sections:update'),
-//   sectionsController.updateSection
-// );
+router.put(
+  '/:id',
+  // hasPermission('sections:update'),
+  sectionsController.updateSection
+);
 
-// router.delete(
-//   '/:id',
-//   hasPermission('sections:delete'),
-//   sectionsController.deleteSection
-// );
+router.delete(
+  '/:id',
+  // hasPermission('sections:delete'),
+  sectionsController.deleteSection
+);
 
 // // Get articles by section
 // router.get(

@@ -19,18 +19,18 @@ router.use(protect);
 
 // Routes that require specific permissions
 router.route('/')
-  .get(hasPermission('permissions:list'), getPermissions)
-  .post(hasPermission('permissions:create'), createPermission);
+  .get(getPermissions)
+  .post(createPermission);
 
 router.route('/modules')
-  .get(hasPermission('permissions:list'), getPermissionsByModule);
+  .get(getPermissionsByModule);
 
 router.route('/bulk')
-  .post(hasPermission('permissions:create'), bulkCreatePermissions);
+  .post(bulkCreatePermissions);
 
 router.route('/:id')
-  .get(hasPermission('permissions:view'), getPermission)
-  .put(hasPermission('permissions:update'), updatePermission)
-  .delete(hasPermission('permissions:delete'), deletePermission);
+  .get(getPermission)
+  .put(updatePermission)
+  .delete(deletePermission);
 
 module.exports = router;

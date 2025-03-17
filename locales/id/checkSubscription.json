@@ -1,0 +1,8 @@
+{
+  "subscriptionLimit": {
+    "jobsLimit": "Anda tidak dapat memposting Job Listing, kuota habis!",
+    "userViewedLimit": "Anda tidak dapat melihat profil kandidat, kuota habis!",
+    "memberLimit": "Anda tidak dapat menambahkan user baru, kuota habis!",
+    "notFound": "Anda tidak memiliki subscription yang aktif, mohon upgrade."
+  }
+}

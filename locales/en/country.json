@@ -1,0 +1,15 @@
+{
+  "country": {
+    "create": "Country information created successfully.",
+    "delete": "Country information deleted.",
+    "update": "Country information successfully updated.",
+    "codeExists": "Country code already exists.",
+    "activityUpdate": "Country status updated successfully.",
+    "defaultStatusUpdate": "This country is selected as default.",
+    "defaultStatusRemove": "Country selected remove as default.",
+    "updateSequence": "Country Sequence updated!",
+    "findAll": "All countries have been successfully obtained.",
+    "get": "The country has been successfully obtained.",
+    "isDefault": "You can not deactivate default country."
+  }
+}

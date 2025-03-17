@@ -1,0 +1,11 @@
+{
+  "staff": {
+    "create": "Staff berhasil dibuat.",
+    "createError": "Staff sudah ada!",
+    "delete": "Anda menghapus staff.",
+    "update": "Anda memperbarui staff.",
+    "get": "Staff berhasil diambil.",
+    "gerError": "Staff tidak ditemukan!",
+    "getList": "Semua staff berhasil diambil."
+  }
+}

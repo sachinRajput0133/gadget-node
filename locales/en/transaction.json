@@ -1,0 +1,8 @@
+{
+    "transaction": {
+        "unableToSendInvoice": "Unable to send invoice due to technical issue. Please try after some time.",
+        "notFound": "This transaction is not found.",
+        "invoiceNotFound": "The invoice is not found.",
+        "emailNotFound": "Email is not found!"
+    }
+}

@@ -1,0 +1,11 @@
+{
+  "localize": {
+    "create": "Localize created successfully.",
+    "createError": "Localize already found.",
+    "delete": "Localize deleted successfully.",
+    "update": "Localize successfully updated.",
+    "get": "Localize fetched successfully.",
+    "getError": "Localize not found!",
+    "getList": "All Localize fetched successfully."
+  }
+}

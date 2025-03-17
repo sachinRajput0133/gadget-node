@@ -1,0 +1,28 @@
+{
+  "widget": {
+    "create": "The widget has been created successfully.",
+    "update": "The widget has been updated successfully.",
+    "delete": "The widget has been deleted successfully.",
+    "getWidgetTypes": "All Widget Types have been successfully owned.",
+    "getSelectionTypes": "All Selection Types have been successfully owned.",
+    "getAll": "All widgets have been successfully owned.",
+    "partialUpdate": "The widget has been updated successfully.",
+    "getCollectionData": "Collection data have been successfully owned."
+  },
+  "page": {
+    "getAll": "All pages have been successfully owned.",
+    "create": "Page has been created successfully.",
+    "update": "Page has been updated successfully.",
+    "delete": "The Page has been deleted successfully."
+  },
+  "item": {
+    "getAll": "All items have been successfully owned.",
+    "create": "The item has been created successfully.",
+    "update": "The item has been updated successfully.",
+    "delete": "The item has been deleted successfully."
+  },
+  "user": {
+    "widgetData": "All data have been successfully owned.",
+    "pageData": "All data have been successfully owned."
+  }
+}

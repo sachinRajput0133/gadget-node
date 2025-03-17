@@ -1,0 +1,16 @@
+{
+  "order": {
+    "create": "Your order created successfully.",
+    "getStatus": "Transaction fetched successfully.",
+    "getAll": "All transactions fetched successfully.",
+    "alreadyFound": "This transaction has been paid.",
+    "topupPurchased": "You already purchased a top-up. Please use it.",
+    "empty": "Order amount can not be 0",
+    "notFound": "Order not found",
+    "freeSubscriptionNotCreated": "You can not purchase Free subscription again. Try with another subscription plan.",
+    "subscriptionNotFound": "This subscription not found. Try another one.",
+    "userStatusPending": "Your account status is still pending!",
+    "userStatusDeclined": "Your account is declined by admin!",
+    "captured": "Payment captured successfully!"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "category": {
+    "create": "Category created successfully.",
+    "delete": "Category successfully deleted.",
+    "update": "Category successfully updated.",
+    "activityUpdate": "Category status updated successfully.",
+    "findAll": "All categories have been successfully owned.",
+    "findOne": "Category has been successfully owned.",
+    "deleteFailed": "Soft delete failed",
+    "canNotDeletedOrDeactivated": "Cannot delete or deactivate protected categories"
+  }
+}

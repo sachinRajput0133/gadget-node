@@ -1,0 +1,16 @@
+{
+  "submaster": {
+    "create": "Submaster telah berhasil dibuat.",
+    "update": "Submaster telah berhasil diperbarui.",
+    "delete": "Submaster telah berhasil dihapus.",
+    "activate": "Submaster telah berhasil diaktifkan.",
+    "deactivate": "Submaster telah berhasil dinonaktifkan.",
+    "default": "Submaster telah disetel ke default.",
+    "notDefault": "Submaster telah dihapus dari default.",
+    "display": "Tampilan web diaktifkan.",
+    "notDisplay": "Tampilan web dinonaktifkan.",
+    "seq": "Urutan berhasil diperbarui.",
+    "findAll": "Semua Submaster telah berhasil diambil.",
+    "notFound": "Catatan submaster belum ditemukan."
+  }
+}

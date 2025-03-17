@@ -1,0 +1,14 @@
+{
+  "country": {
+    "create": "Informasi negara berhasil dibuat.",
+    "delete": "Informasi negara berhasil dihapus.",
+    "update": "Informasi negara berhasil diperbarui.",
+    "codeExists" : "Kode negara sudah ada.",
+    "activityUpdate": "Status negara berhasil diperbarui.",
+    "defaultStatusUpdate": "Negara ini dipilih sebagai default.",
+    "defaultStatusRemove": "Negara yang dipilih dirubah menjadi negara asal.",
+    "updateSequence": "Urutan negara diperbarui!",
+    "findAll": "Semua negara telah berhasil didapatkan.",
+    "get": "negara telah berhasil diperoleh."
+  }
+}

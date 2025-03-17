@@ -1,5 +1,24 @@
 const mongoose = require('mongoose');
 const slugify = require('slugify');
+const mongoosePaginate = require('mongoose-paginate-v2');
+var idValidator = require("mongoose-id-validator");
+
+const myCustomLabels = {
+  totalDocs: "itemCount",
+  docs: "data",
+  limit: "perPage",
+  page: "currentPage",
+  nextPage: "next",
+  prevPage: "prev",
+  totalPages: "pageCount",
+  pagingCounter: "slNo",
+  meta: "paginator",
+};
+mongoosePaginate.paginate.options = {
+  customLabels: myCustomLabels,
+};
+
+
 
 const CategorySchema = new mongoose.Schema(
   {
@@ -34,7 +53,8 @@ const CategorySchema = new mongoose.Schema(
     toObject: { virtuals: true },
   }
 );
-
+CategorySchema.plugin(mongoosePaginate);
+CategorySchema.plugin(idValidator);
 // Create category slug from the name
 CategorySchema.pre('save', function (next) {
   if (this.isModified('name')) {

@@ -1,0 +1,16 @@
+{
+  "userjobs": {
+    "create": "You have successfully applied for this job.",
+    "get": "Applied candidate fetched successfully.",
+    "update": "Application status updated.",
+    "findAll": "All applied candidates have been fetched.",
+    "statuschange": "Job application status changed.",
+    "getList": "All applied Job fetched successfully.",
+    "applied": "You have already applied for this job.",
+    "minVacancy": "Vacancies must not be lower than no of hired candidates",
+    "redirectUrlEnabled": "Response Status Cannot Be Changed.",
+    "jobExpired": "This job is expired.",
+    "userPending": "Your account is pending.",
+    "userDeclined": "Your account is declined by admin."
+  }
+}

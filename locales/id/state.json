@@ -1,0 +1,12 @@
+{
+  "state": {
+    "create": "Negara berhasil dibuat.",
+    "delete": "Negara berhasil dihapus.",
+    "update": "Negara berhasil diperbarui.",
+    "codeExists" : "Kode negara sudah ada.",
+    "activityUpdate": "Status aktivitas berhasil diperbarui.",
+    "defaultStatusUpdate": "Negara ini dipilih sebagai default.",
+    "deleteError": "Anda tidak dapat menghapus negara ini.",
+    "updateSequence":"Urutan Negara diperbarui!"
+  }
+}

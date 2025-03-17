@@ -1,0 +1,12 @@
+{
+  "state": {
+    "create": "State created successfully.",
+    "delete": "State deleted successfully.",
+    "update": "State updated successfully.",
+    "codeExists" : "State code already exists.",
+    "activityUpdate": "Activity status updated successfully.",
+    "defaultStatusUpdate": "This state is selected as default.",
+    "deleteError": "You can't delete this state.",
+    "updateSequence":"State Sequence updated!"
+  }
+}

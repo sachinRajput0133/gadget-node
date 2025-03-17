@@ -1,0 +1,12 @@
+{
+  "city": {
+    "create": "City information added successfully.",
+    "delete": "City information deleted successfully.",
+    "update": "City information successfully updated.",
+    "codeExists" : "City code already exists.",
+    "activityUpdate": "Activity status updated successfully.",
+    "defaultStatusUpdate": "This city is selected as the default.",
+    "deleteError": "You can’t delete this city.",
+    "updateSequence":"City Sequence updated!"
+  }
+}

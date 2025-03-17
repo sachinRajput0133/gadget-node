@@ -1,0 +1,12 @@
+{
+  "city": {
+    "create": "Informasi kota berhasil ditambahkan.",
+    "delete": "Informasi kota berhasil dihapus.",
+    "update": "Informasi kota berhasil diperbarui.",
+    "codeExists" : "Kode kota sudah ada.",
+    "activityUpdate": "Status aktivitas berhasil diperbarui.",
+    "defaultStatusUpdate": "Kota ini dipilih sebagai default.",
+    "deleteError": "Anda tidak dapat menghapus kota ini.",
+    "updateSequence":"Urutan Kota diperbarui!"
+  }
+}

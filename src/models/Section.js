@@ -1,6 +1,25 @@
 const mongoose = require('mongoose');
 const slugify = require('slugify');
 
+const mongoosePaginate = require('mongoose-paginate-v2');
+var idValidator = require("mongoose-id-validator");
+
+const myCustomLabels = {
+  totalDocs: "itemCount",
+  docs: "data",
+  limit: "perPage",
+  page: "currentPage",
+  nextPage: "next",
+  prevPage: "prev",
+  totalPages: "pageCount",
+  pagingCounter: "slNo",
+  meta: "paginator",
+};
+mongoosePaginate.paginate.options = {
+  customLabels: myCustomLabels,
+};
+
+
 const SectionSchema = new mongoose.Schema(
   {
     name: {
@@ -10,17 +29,16 @@ const SectionSchema = new mongoose.Schema(
       trim: true,
       maxlength: [50, 'Name cannot be more than 50 characters']
     },
-    slug: {
-      type: String,
-      unique: true
-    },
+    // slug: {
+    //   type: String,
+    //   unique: true
+    // },
     description: {
       type: String,
       maxlength: [500, 'Description cannot be more than 500 characters']
     },
     isActive: {
       type: Boolean,
-      default: true
     },
     displayOrder: {
       type: Number,
@@ -37,7 +55,11 @@ const SectionSchema = new mongoose.Schema(
     metaDescription: {
       type: String,
       maxlength: [250, 'Meta description cannot be more than 250 characters']
-    }
+    },
+    Article: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Article'
+    }]
   },
   {
     timestamps: true,
@@ -45,7 +67,8 @@ const SectionSchema = new mongoose.Schema(
     toObject: { virtuals: true }
   }
 );
-
+SectionSchema.plugin(mongoosePaginate);
+SectionSchema.plugin(idValidator);
 // Create section slug from the name
 SectionSchema.pre('save', function (next) {
   if (this.isModified('name')) {

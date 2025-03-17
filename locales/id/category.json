@@ -1,0 +1,10 @@
+{
+  "category": {
+    "create": "Kategori berhasil dibuat.",
+    "delete": "Kategori berhasil dihapus.",
+    "update": "Kategori berhasil diperbarui.",
+    "activityUpdate": "Status kategori berhasil diperbarui.",
+    "findAll": "Seluruh kategori telah berhasil dimiliki.",
+    "findOne": "Kategori telah berhasil dimiliki."
+  }
+}

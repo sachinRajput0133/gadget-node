@@ -1,0 +1,56 @@
+{
+  "responseMessage": {
+    "badRequest": "Permintaan tidak dapat diproses, silahkan dilengkapi kembali.",
+    "isDuplicate": "Duplikasi data ditemukan!",
+    "recordNotFound": "Data dengan kriteria tertentu tidak dapat ditentukan.",
+    "insufficientParameters": "Parameter yang tidak memadai.",
+    "mongoError": "Terdapat kesalahan di MongoDB!",
+    "inValidParam": "Ada kesalahan pada nilai parameter.",
+    "unAuthorizedRequest": "Anda tidak memiliki akses untuk mengakses permintaan.",
+    "failedSoftDelete": "Data tidak dapat dihapus karena kesalahan server!",
+    "server_error": "Server mengalami error. Refresh page kembali!",
+    "unAuthenticated": "Tidak dapat diotentikasi.",
+    "renew_token": "Token baru telah tergenerate.",
+    "saveContactUsDetails": "Terima kasih telah menghubungi kami. Kami akan segera menghubungi Anda."
+  },
+  "commonResponse": {
+    "get": "Data berhasil diambil."
+  },
+  "module": {
+    "add": "{module} telah berhasil ditambahkan.",
+    "somethingWentWrongError": "Ada yang tidak beres {module}",
+    "alreadyExists": "{module} sudah ada.",
+    "get": "{module} telah berhasil didapatkan.",
+    "update": "{module} telah berhasil diperbarui.",
+    "delete": "{module} telah berhasil dihapus.",
+    "list": "Semua {module} telah berhasil didapatkan.",
+    "activate": "{module} diaktifkan.",
+    "deactivate": "{module} dinonaktifkan.",
+    "setDefault": "{module} ditetapkan sebagai default.",
+    "create": "{module} telah berhasil dibuat.",
+    "notFound": "{module} tidak ditemukan!",
+    "notAllowed": "Anda tidak dapat mengakses platform ini {reason}.",
+    "cannotGive": "Anda dibatasi untuk memberikan ulasan sebagai {reason}.",
+    "alreadyGiven": "Anda sudah mengirimkan {module} Anda.",
+    "cannotApply": "Anda tidak dapat melamar pekerjaan ini sebagai {reason}.",
+    "cannotOpenResume": "Maaf, Harap lengkapi {module}% profil Anda untuk memanfaatkan resume ini.",
+    "downloadAndSave": "{module} diunduh dan disimpan ke profil Anda.",
+    "download": "{module} berhasil diunduh.",
+    "exists": "{modul} ditemukan.",
+    "notExists": "{modul} tidak ditemukan.",
+    "buy": "{module} berhasil dibeli.",
+    "error": "Facing error while {module}.",
+    "updateSequence": "Urutan {module} berhasil diperbarui.",
+    "notEmpty": "{module} tidak boleh kosong.",
+    "select": "Silakan pilih {modul}."
+  },
+  "reasonsFor": {
+    "notAppliedinJob": "Anda tidak melamar pekerjaan apa pun di perusahaan ini.",
+    "profilePending": "Anda belum menyelesaikan 60% dari profil Anda. Harap lengkapi sebelum mendaftar.",
+    "jobNotPublished": "itu tidak diterbitkan. Silakan cari pekerjaan lain atau coba setelah beberapa waktu."
+  },
+  "switchProfile": {
+    "unableToSwitch": "Unable to switch profile.",
+    "notAllowedToApply": "You are not allowed to apply for a job posted by another employer."
+  }
+}

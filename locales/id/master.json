@@ -1,0 +1,16 @@
+{
+  "master": {
+    "create": "Master telah berhasil dibuat.",
+    "update": "Master telah berhasil diperbarui.",
+    "delete": "Master telah berhasil dihapus.",
+    "activate": "Master telah berhasil diaktifkan.",
+    "deactivate": "Master telah berhasil dinonaktifkan.",
+    "default": "Master telah disetel ke default.",
+    "notDefault": "Master telah dihapus dari default.",
+    "display": "Tampilan web diaktifkan.",
+    "notDisplay": "Tampilan web dinonaktifkan.",
+    "seq": "Urutan berhasil diperbarui.",
+    "findAll": "Semua master telah berhasil diambil.",
+    "notFound": "Master belum ditemukan."
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "employer": {
+    "create": "Employer created successfully.",
+    "createError": "Employer already found.",
+    "delete": "The company has been deleted successfully.",
+    "cannotDelete": "You can't delete this company as it is not permitted.",
+    "update": "Employer successfully updated.",
+    "get": "Employer fetched successfully.",
+    "gerError": "Employer not found!",
+    "getList": "All employers fetched successfully.",
+    "view": "Employer fetched successfully.",
+    "companyUpdate": "Company information successfully updated",
+    "companyGet": "Company fetched successfully.",
+    "addMember": "Team member added successfully.",
+    "getMemberList": "All team members fetched successfully.",
+    "updateMember": "Team member updated successfully.",
+    "activate": "Member activated successfully.",
+    "deActivate": "Member deactivated successfully.",
+    "deleteMember": "Team member deleted successfully.",
+    "import": "Import process completed normally.",
+    "importError": "Import process failed.",
+    "notApproved": "Your Admin Approve Verification Pending.",
+    "decline": "You are Descline by Admin.",
+    "cannotDeactivate": "Cannot deactivate this employer!"
+  }
+}

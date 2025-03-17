@@ -1,0 +1,16 @@
+{
+  "submaster": {
+    "create": "Submaster has been created successfully.",
+    "update": "Submaster has been updated successfully.",
+    "delete": "Submaster has been deleted successfully.",
+    "activate": "Submaster has been activated successfully.",
+    "deactivate": "Submaster has been deactivated successfully.",
+    "default": "Submaster has been set to default.",
+    "notDefault": "Submaster has been removed from default.",
+    "display": "Web view enabled.",
+    "notDisplay": "Web view disabled.",
+    "seq": "Sequence updated successfully.",
+    "findAll": "All Submasters have been fetched successfully.",
+    "notFound": "Submaster record has not been found."
+  }
+}

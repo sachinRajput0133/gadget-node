@@ -1,0 +1,16 @@
+{
+  "master": {
+    "create": "Master has been created successfully.",
+    "update": "Master has been updated successfully.",
+    "delete": "Master has been deleted successfully.",
+    "activate": "Master has been activated successfully.",
+    "deactivate": "Master has been deactivated successfully.",
+    "default": "Master has been set to default.",
+    "notDefault": "Master has been removed from default.",
+    "display": "Web view enabled.",
+    "notDisplay": "Web view disabled.",
+    "seq": "Sequence updated successfully.",
+    "findAll": "All masters have been fetched successfully.",
+    "notFound": "Master record has not been found."
+  }
+}

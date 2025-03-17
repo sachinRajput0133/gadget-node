@@ -1,6 +1,23 @@
 const mongoose = require('mongoose');
 const slugify = require('slugify');
+const mongoosePaginate = require('mongoose-paginate-v2');
+var idValidator = require("mongoose-id-validator");
 
+
+const myCustomLabels = {
+  totalDocs: "itemCount",
+  docs: "data",
+  limit: "perPage",
+  page: "currentPage",
+  nextPage: "next",
+  prevPage: "prev",
+  totalPages: "pageCount",
+  pagingCounter: "slNo",
+  meta: "paginator",
+};
+mongoosePaginate.paginate.options = {
+  customLabels: myCustomLabels,
+};
 const ArticleSchema = new mongoose.Schema(
   {
     title: {
@@ -95,22 +112,23 @@ const ArticleSchema = new mongoose.Schema(
     toObject: { virtuals: true }
   }
 );
-
+ArticleSchema.plugin(mongoosePaginate);
+ArticleSchema.plugin(idValidator);
 // Create article slug from the title
-ArticleSchema.pre('save', function (next) {
+ArticleSchema.pre('save', function() {
   if (this.isModified('title')) {
     this.slug = slugify(this.title, {
       lower: true,
       strict: true
     });
   }
-  next();
+  // Remove the next() call - it's not needed in Mongoose 7+
 });
 
 // Cascade delete comments when an article is deleted
-ArticleSchema.pre('remove', async function (next) {
+ArticleSchema.pre('remove', async function() {
   await this.model('Comment').deleteMany({ article: this._id });
-  next();
+  // Remove the next() call - it's not needed in Mongoose 7+
 });
 
 // Reverse populate with comments
@@ -120,5 +138,13 @@ ArticleSchema.virtual('comments', {
   foreignField: 'article',
   justOne: false
 });
+
+// Index for better search performance
+ArticleSchema.index({ title: 'text', content: 'text', seoKeywords: 'text' });
+ArticleSchema.index({ slug: 1 });
+ArticleSchema.index({ category: 1 });
+ArticleSchema.index({ author: 1 });
+ArticleSchema.index({ createdAt: -1 });
+ArticleSchema.index({ isPublished: 1 });
 
 module.exports = mongoose.model('Article', ArticleSchema);

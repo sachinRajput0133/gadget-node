@@ -1,0 +1,11 @@
+{
+  "licence": {
+    "create": "Licence created successfully.",
+    "delete": "Licence deleted successfully.",
+    "update": "Licence renewed successfully.",
+    "activityUpdate": "Subscription status changed.",
+    "defaultStatusUpdate": "This subscription is set as default.",
+    "deleteError": "You can't delete this subscription.",
+    "plansList": "Fetched all actived subscriptions."
+  }
+}

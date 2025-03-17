@@ -1,0 +1,14 @@
+{
+  "role": {
+    "create": "You successfully created this role.",
+    "createError": "Sorry, role is not created.",
+    "update": "You updated this role.",
+    "delete": "You deleted this role.",
+    "findAll": "All Roles fetched successfully.",
+    "findOne": "Role fetched successfully.",
+    "alreadyFound": "Role already exists!",
+    "updateError": "Role not found or you can't update this role.",
+    "deleteError": "Role not found or you can't delete this role.",
+    "roleNotFound": "Role not found!"
+  }
+}

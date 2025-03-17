@@ -1,0 +1,12 @@
+{
+  "emailTemplate": {
+    "create": "Template email berhasil dibuat.",
+    "createError": "Template email tidak berhasil dibuat.",
+    "delete": "Template email berhasil dihapus.",
+    "deleteError": "Template email tidak berhasil dihapus.",
+    "update": "Template email berhasil diperbarui.",
+    "updateError": "Template email tidak berhasil diperbarui.",
+    "findAll": "Seluruh template email telah berhasil didapatkan.",
+    "view": "Template email telah berhasil didapatkan."
+  }
+}

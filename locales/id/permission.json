@@ -1,0 +1,10 @@
+{
+  "permission": {
+    "permissionupdate": "Izin diperbarui!",
+    "permissionError": "Izin tidak dapat diubah.",
+    "permissionFindAll": "Semua izin telah berhasil diambil.",
+    "permissionNotFound": "Izin tidak ditemukan!",
+    "permissionFind": "Izin pekerjaan berhasil diambil.",
+    "permissionNotFind": "Izin pekerjaan tidak ditemukan!"
+  }
+}

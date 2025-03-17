@@ -2,7 +2,23 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { ref } = require('joi');
+const mongoosePaginate = require('mongoose-paginate-v2');
+var idValidator = require("mongoose-id-validator");
 
+const myCustomLabels = {
+  totalDocs: "itemCount",
+  docs: "data",
+  limit: "perPage",
+  page: "currentPage",
+  nextPage: "next",
+  prevPage: "prev",
+  totalPages: "pageCount",
+  pagingCounter: "slNo",
+  meta: "paginator",
+};
+mongoosePaginate.paginate.options = {
+  customLabels: myCustomLabels,
+};
 const UserSchema = new mongoose.Schema(
   {
     name: {
@@ -51,7 +67,8 @@ const UserSchema = new mongoose.Schema(
     toObject: { virtuals: true },
   }
 );
-
+UserSchema.plugin(mongoosePaginate);
+UserSchema.plugin(idValidator);
 // Encrypt password using bcrypt
 UserSchema.pre('save', async function (next) {
   if (!this.isModified('password')) {
@@ -64,7 +81,7 @@ UserSchema.pre('save', async function (next) {
 
 // Sign JWT and return
 UserSchema.methods.getSignedJwtToken = function () {
-  return jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
+  return jwt.sign({ id: this._id, email: this.email }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRE,
   });
 };

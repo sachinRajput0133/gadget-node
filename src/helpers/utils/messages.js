@@ -3,11 +3,19 @@ const {
   RESPONSE_CODE,
 } = require("../../../config/constants/responseCodeConstant");
 
+exports.unAuthenticated = (res) => {
+  return res.status(responseStatusCode.unAuthorized).json({
+    code: RESPONSE_CODE.UNAUTHENTICATED,
+    message: res.message,
+    data: {}
+  });
+};
+
 exports.successResponse = (data, res) => {
   return res.status(responseStatusCode.success).json({
     code: RESPONSE_CODE.DEFAULT,
     message: res.message,
-    data: data || {},
+    data: data,
   });
 };
 
@@ -15,56 +23,97 @@ exports.createdDocumentResponse = (data, res) => {
   return res.status(responseStatusCode.create).json({
     code: RESPONSE_CODE.DEFAULT,
     message: res.message,
-    data: data || {},
+    data: data,
   });
 };
 
-exports.updateDocumentResponse = (data, res) => {
+exports.emailSendSuccessfully = (res) => {
   return res.status(responseStatusCode.success).json({
     code: RESPONSE_CODE.DEFAULT,
     message: res.message,
-    data: data || {},
+    data: {}
   });
 };
 
-exports.successListResponse = (result, res) => {
+exports.sendEmailFailed = (res) => {
+  return res.status(responseStatusCode.badRequest).json({
+    code: RESPONSE_CODE.ERROR,
+    message: res.message,
+    data: {}
+  });
+};
+
+exports.emailVerifySuccess = (res) => {
+  return res.status(responseStatusCode.success).json({
+    CODE: RESPONSE_CODE.DEFAULT,
+    MESSAGE: res.message,
+    data: {}
+  });
+};
+
+exports.linkInvalid = (res) => {
+  return res.status(responseStatusCode.validationError).json({
+    code: RESPONSE_CODE.ERROR,
+    message: res.message,
+    data: {}
+  });
+};
+
+exports.changePasswordResponse = (res) => {
   return res.status(responseStatusCode.success).json({
     code: RESPONSE_CODE.DEFAULT,
     message: res.message,
-    data: result.data || [],
-    pagination: result.pagination || {},
+    data: {}
+  });
+};
+
+exports.wrongPassword = (res) => {
+  return res.status(responseStatusCode.success).json({
+    code: RESPONSE_CODE.ERROR,
+    message: res.message,
+    data: {}
+  });
+};
+
+exports.redirectTo = (data, res) => {
+  return res.status(responseStatusCode.success).json({
+    code: RESPONSE_CODE.REDIRECT,
+    message: res.message,
+    data
+  });
+};
+
+exports.updateProfileResponse = (data, res) => {
+  return res.status(responseStatusCode.success).json({
+    code: RESPONSE_CODE.DEFAULT,
+    message: res.message,
+    data: data,
   });
 };
 
 exports.failureResponse = (data, res) => {
-  let message = data;
-  if (data && data.name === "ValidationError") {
-    let i = 0;
+  let i = 0;
+  if (data.name === "ValidationError") {
     Object.keys(data.errors).forEach((key) => {
       if (i !== 1) {
-        message = data.errors[key].message;
+        data.message = data.errors[key].message;
       }
       i++;
     });
-  } else if (data && data.message) {
-    message = data.message;
   }
-  
+  res.message = data.message;
   return res.status(responseStatusCode.validationError).json({
     code: RESPONSE_CODE.ERROR,
-    message: message,
-    data: {},
+    message: data.message ? data.message : data,
   });
 };
-
 exports.badRequest = (data, res) => {
-  return res.status(responseStatusCode.badRequest).json({
+  return res.status(responseStatusCode.validationError).json({
     code: RESPONSE_CODE.ERROR,
     message: res.message,
-    data: data || {},
+    data: data,
   });
 };
-
 exports.recordNotFound = (res) => {
   return res.status(responseStatusCode.success).json({
     code: RESPONSE_CODE.DEFAULT,
@@ -72,15 +121,20 @@ exports.recordNotFound = (res) => {
     data: {}
   });
 };
-
+exports.insufficientParameters = (res) => {
+  return res.status(responseStatusCode.badRequest).json({
+    code: RESPONSE_CODE.ERROR,
+    message: res.message,
+    data: {}
+  });
+};
 exports.notFound = (err, res) => {
   return res.status(responseStatusCode.notFound).json({
-    code: RESPONSE_CODE.ERROR,
+    code: RESPONSE_CODE.DEFAULT,
     message: err,
     data: {}
   });
 };
-
 exports.inValidParam = (message, res) => {
   message = message.replace(/\"/g, "");
   res.message = message;
@@ -90,32 +144,27 @@ exports.inValidParam = (message, res) => {
     data: {}
   });
 };
-
 exports.unAuthorizedRequest = (message, res) => {
   return res.status(responseStatusCode.unAuthorized).json({
-    code: RESPONSE_CODE.UNAUTHENTICATED,
+    code: RESPONSE_CODE.ERROR,
     message: message,
     data: {}
   });
 };
-
-exports.loginSuccess = (result, res) => {
+exports.loginSuccess = async (result, res) => {
   return res.status(responseStatusCode.success).json({
     code: RESPONSE_CODE.LOGIN,
     message: res.message,
     data: result,
   });
 };
-
-exports.loginFailed = (error, res) => {
-  res.message = error.message || error;
-  return res.status(responseStatusCode.validationError).json({
-    code: RESPONSE_CODE.ERROR,
+exports.verificationOTP = (result, res) => {
+  return res.status(responseStatusCode.success).json({
+    code: RESPONSE_CODE.OTP,
     message: res.message,
-    data: {}
+    data: result.token ? result : { message: result },
   });
 };
-
 exports.passwordEmailWrong = (res) => {
   return res.status(responseStatusCode.unAuthorized).json({
     code: RESPONSE_CODE.ERROR,
@@ -123,7 +172,21 @@ exports.passwordEmailWrong = (res) => {
     data: {}
   });
 };
-
+exports.passwordNotSet = (res) => {
+  return res.status(responseStatusCode.unAuthorized).json({
+    code: RESPONSE_CODE.ERROR,
+    message: res.message,
+    data: {}
+  });
+};
+exports.loginFailed = (error, res) => {
+  res.message = error.message;
+  return res.status(responseStatusCode.validationError).json({
+    code: RESPONSE_CODE.ERROR,
+    message: error.message,
+    data: {}
+  });
+};
 exports.userNotFound = (res) => {
   return res.status(responseStatusCode.validationError).json({
     code: RESPONSE_CODE.ERROR,
@@ -131,15 +194,84 @@ exports.userNotFound = (res) => {
     data: {}
   });
 };
+exports.logoutSuccessfull = (result, res) => {
+  return res.status(responseStatusCode.success).json({
+    code: RESPONSE_CODE.DEFAULT,
+    message: res.message,
+    data: result,
+  });
+};
+exports.changePasswordFailResponse = (res) => {
+  return res.status(responseStatusCode.success).json({
+    code: RESPONSE_CODE.ERROR,
+    message: res.message,
+    data: {},
+  });
+};
+exports.loginOtpVerified = (data, res) => {
+  return res.status(responseStatusCode.success).json({
+    code: RESPONSE_CODE.OTP,
+    message: res.message,
+    data: data,
+  });
+};
+exports.loginOtpVerificationFailed = (res) => {
+  return res.status(responseStatusCode.success).json({
+    code: RESPONSE_CODE.ERROR,
+    message: res.message,
+    data: {}
+  });
+};
+exports.loginWithAzureFailed = (res) => {
+  return res.status(responseStatusCode.success).json({
+    code: RESPONSE_CODE.ERROR,
+    message: res.message,
+    data: {}
+  });
+};
+exports.successListResponse = (result, res) => {
+  return res.status(responseStatusCode.success).json({
+    code: RESPONSE_CODE.DEFAULT,
+    message: result.message,
+    data: result.data,
+    paginator: result.paginator,
+  });
+};
+exports.loginApiUserFailed = (res) => {
+  return res.status(responseStatusCode.success).json({
+    code: RESPONSE_CODE.ERROR,
+    message: res.message,
+  });
+};
+
+exports.updateDocumentResponse = (data, res) => {
+  return res.status(responseStatusCode.success).json({
+    code: RESPONSE_CODE.DEFAULT,
+    message: res.message,
+    data: data,
+  });
+};
+
+exports.accountNotVerified = (res) => {
+  return res.status(responseStatusCode.success).json({
+    code: RESPONSE_CODE.NOT_VERIFIED,
+    message: res.message
+  });
+};
+
+exports.credentialsExists = (res) => {
+  return res.status(responseStatusCode.duplicateRecord).json({
+    code: RESPONSE_CODE.DUPLICATE,
+    message: res.message,
+  });
+}
 
 exports.internalServerError = (res) => {
   return res.status(responseStatusCode.internalServerError).json({
     code: RESPONSE_CODE.ERROR,
-    message: res.message || "Internal server error",
-    data: {}
+    message: res.message,
   });
-};
-
+}
 exports.forbidden = (message, res) => {
   return res.status(responseStatusCode.forbidden).json({
     code: RESPONSE_CODE.ERROR,
@@ -147,11 +279,23 @@ exports.forbidden = (message, res) => {
     data: {}
   });
 };
-
-exports.duplicateRecord = (res) => {
-  return res.status(responseStatusCode.duplicateRecord).json({
-    code: RESPONSE_CODE.DUPLICATE,
-    message: res.message,
-    data: {}
+exports.clientNotFound = (message, res) => {
+  return res.status(responseStatusCode.forbidden).json({
+    code: RESPONSE_CODE.INVALID_CLIENT,
+    message: message,
   });
-};
+}
+
+exports.clientNotExist = (message, res) => {
+  return res.status(responseStatusCode.success).json({
+    code: RESPONSE_CODE.INVALID_CLIENT,
+    message: message,
+  });
+}
+
+exports.clientError = (res) => {
+  return res.status(responseStatusCode.validationError).json({
+    code: RESPONSE_CODE.FAILURE,
+    message: res.message,
+  })
+}

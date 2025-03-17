@@ -1,0 +1,13 @@
+{
+  "userjobs": {
+    "create": "Anda berhasil melamar pekerjaan ini.",
+    "get": "Kandidat yang diterapkan berhasil diambil.",
+    "update": "Status aplikasi diperbarui.",
+    "findAll": "Semua kandidat yang melamar telah diambil.",
+    "statuschange": "Status aplikasi pekerjaan berubah.",
+    "getList": "Semua Pekerjaan yang diterapkan berhasil diambil.",
+    "applied": "Anda sudah melamar pekerjaan ini.",
+    "minVacancy": "Jumlah lowongan tidak boleh lebih rendah dari jumlah kandidat yang telah dipekerjakan.",
+    "redirectUrlEnabled": "Response Status Cannot Be Changed."
+  }
+}

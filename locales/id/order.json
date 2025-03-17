@@ -1,0 +1,9 @@
+{
+  "order": {
+    "create": "Order Anda telah berhasil dibuat.",
+    "getStatus": "Transaksi berhasil diambil.",
+    "getAll": "Semua transaksi berhasil diambil.",
+    "alreadyFound":"Transaksi ini telah dibayar.",
+    "topupPurchased": "Anda sudah membeli isi ulang. Silakan gunakan."
+  }
+}

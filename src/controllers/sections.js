@@ -4,11 +4,11 @@ const Category = require('../models/Category');
 const Article = require('../models/Article');
 const ErrorResponse = require('../utils/errorResponse');
 const asyncHandler = require('../middleware/async');
-
+const sectionService = require('../services/section');
 // @desc    Get all sections
 // @route   GET /api/sections
 // @access  Public
-exports.getSections = asyncHandler(async (req, res, next) => {
+const getSections = asyncHandler(async (req, res, next) => {
   let query;
 
   // Copy req.query
@@ -99,7 +99,7 @@ exports.getSections = asyncHandler(async (req, res, next) => {
 // @desc    Get single section
 // @route   GET /api/sections/:id
 // @access  Public
-exports.getSection = asyncHandler(async (req, res, next) => {
+const getSection = asyncHandler(async (req, res, next) => {
   const section = await Section.findById(req.params.id)
     .populate({
       path: 'Category',
@@ -125,46 +125,18 @@ exports.getSection = asyncHandler(async (req, res, next) => {
 // @desc    Create new section
 // @route   POST /api/sections
 // @access  Private/Admin
-exports.createSection = asyncHandler(async (req, res, next) => {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return next(new ErrorResponse('Validation error', 400, errors.array()));
-  }
+const createSection = asyncHandler(async (req, res, next) => {
+  const result = await sectionService.create(req);
+  util.successResponse(result, res);
 
-  // Check if category exists
-  if (req.body.Category) {
-    const category = await Category.findById(req.body.Category);
-    if (!category) {
-      return next(
-        new ErrorResponse(`Category not found with id of ${req.body.Category}`, 404)
-      );
-    }
-  }
 
-  // Check if articles exist
-  if (req.body.Article && req.body.Article.length > 0) {
-    for (const articleId of req.body.Article) {
-      const article = await Article.findById(articleId);
-      if (!article) {
-        return next(
-          new ErrorResponse(`Article not found with id of ${articleId}`, 404)
-        );
-      }
-    }
-  }
-
-  const section = await Section.create(req.body);
-
-  res.status(201).json({
-    success: true,
-    data: section
-  });
+ 
 });
 
 // @desc    Update section
 // @route   PUT /api/sections/:id
 // @access  Private/Admin
-exports.updateSection = asyncHandler(async (req, res, next) => {
+const updateSection = asyncHandler(async (req, res, next) => {
   let section = await Section.findById(req.params.id);
 
   if (!section) {
@@ -209,7 +181,7 @@ exports.updateSection = asyncHandler(async (req, res, next) => {
 // @desc    Delete section
 // @route   DELETE /api/sections/:id
 // @access  Private/Admin
-exports.deleteSection = asyncHandler(async (req, res, next) => {
+const deleteSection = asyncHandler(async (req, res, next) => {
   const section = await Section.findById(req.params.id);
 
   if (!section) {
@@ -229,7 +201,7 @@ exports.deleteSection = asyncHandler(async (req, res, next) => {
 // @desc    Add article to section
 // @route   PUT /api/sections/:id/articles
 // @access  Private/Admin
-exports.addArticleToSection = asyncHandler(async (req, res, next) => {
+const addArticleToSection = asyncHandler(async (req, res, next) => {
   const { articleId } = req.body;
 
   if (!articleId) {
@@ -277,7 +249,7 @@ exports.addArticleToSection = asyncHandler(async (req, res, next) => {
 // @desc    Remove article from section
 // @route   DELETE /api/sections/:id/articles/:articleId
 // @access  Private/Admin
-exports.removeArticleFromSection = asyncHandler(async (req, res, next) => {
+const removeArticleFromSection = asyncHandler(async (req, res, next) => {
   let section = await Section.findById(req.params.id);
 
   if (!section) {
@@ -315,3 +287,13 @@ exports.removeArticleFromSection = asyncHandler(async (req, res, next) => {
     data: section
   });
 });
+
+module.exports = {
+  getSection,
+  getSections,
+  createSection,
+  updateSection,
+  deleteSection,
+  addArticleToSection,
+  removeArticleFromSection
+};

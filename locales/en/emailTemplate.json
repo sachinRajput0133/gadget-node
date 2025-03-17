@@ -1,0 +1,12 @@
+{
+  "emailTemplate": {
+    "create": "Email template created successfully.",
+    "createError": "Email template is not created successfully.",
+    "delete": "Email template deleted successfully.",
+    "deleteError": "Email template is not deleted successfully.",
+    "update": "Email template has been updated successfully.",
+    "updateError": "Email template is not updated successfully.",
+    "findAll": "All email templates have been successfully obtained.",
+    "view": "The email template has been successfully obtained."
+  }
+}

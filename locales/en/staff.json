@@ -1,0 +1,11 @@
+{
+  "staff": {
+    "create": "Staff created successfully.",
+    "createError": "Staff already exists!",
+    "delete": "You removed the staff.",
+    "update": "You updated the staff.",
+    "get": "Staff fetched successfully.",
+    "gerError": "Staff not found!",
+    "getList": "All staff fetched successfully."
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "subscriptionLimit": {
+    "jobsLimit": "You can’t post a Job Listing, limit runs out!",
+    "userViewedLimit": "You can’t view candidate's profile, limit runs out!",
+    "memberLimit": "You can’t add a new user, limit runs out!",
+    "notFound": "You don’t have an active subscription, please upgrade."
+  }
+}

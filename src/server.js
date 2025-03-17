@@ -1,3 +1,4 @@
+global.baseDir = __dirname;
 const path = require('path');
 const express = require('express');
 const dotenv = require('dotenv');
@@ -13,14 +14,113 @@ const compression = require('compression');
 const mongoSanitize = require('express-mongo-sanitize');
 const errorHandler = require('./middleware/error');
 const connectDB = require('./config/database');
-
+const i18next = require("i18next");
+const i18nextMiddleware = require("i18next-express-middleware");
+const FilesystemBackend = require("i18next-node-fs-backend");
+const config = require("../config/config");
+const { authentication } = require("./policies/passport");
 // Load env vars
 dotenv.config();
-
+global.TZ = config.TZ;
 // Connect to database
 connectDB();
 
-const app = express();
+i18next
+  .use(FilesystemBackend)
+  .use(i18nextMiddleware.LanguageDetector)
+  .init({
+    lng: "en",
+    fallbackLng: "en",
+    preload: ["en", "id"],
+    detection: {
+      order: ["header", "querystring", "cookie"],
+      lookupHeader: "lng",
+      caches: false,
+    },
+    fallbackLng: config.DEFAULT_LNG ?? "en",
+    ns: [
+      "auth",
+      "user",
+      "city",
+      "state",
+      "common",
+      "country",
+      "master",
+      "submaster",
+      "file",
+      "form",
+      "staff",
+      "employer",
+      "candidate",
+      "role",
+      "permission",
+      "jobs",
+      "category",
+      "licence",
+      "userjobs",
+      "jobstracks",
+      "usertrack",
+      "adminProfile",
+      "order",
+      "checkSubscription",
+      "employerAnalytics",
+      "adminAnalytics",
+      "pageAndWidget",
+      "transaction",
+      "payment",
+      "localize",
+      "invite"
+    ],
+    defaultNS: [
+      "auth",
+      "user",
+      "city",
+      "state",
+      "common",
+      "country",
+      "master",
+      "submaster",
+      "file",
+      "form",
+      "staff",
+      "employer",
+      "candidate",
+      "role",
+      "permission",
+      "jobs",
+      "category",
+      "licence",
+      "userjobs",
+      "jobstracks",
+      "usertrack",
+      "adminProfile",
+      "order",
+      "checkSubscription",
+      "employerAnalytics",
+      "adminAnalytics",
+      "pageAndWidget",
+      "transaction",
+      "payment",
+      "localize",
+      "invite"
+    ],
+    backend: {
+      loadPath: path.join(__dirname, `/locales/{{lng}}/{{ns}}.json`),
+      addPath: path.join(__dirname, `/locales/{{lng}}/{{ns}}.json`),
+    },
+    // TODO: Remove debug in production
+    debug: false,
+    detection: {
+      order: ["header", "querystring", "cookie"],
+      lookupHeader: "lng",
+      caches: false,
+    },
+    fallbackLng: config.DEFAULT_LNG ?? "en",
+    preload: ["en", "id"],
+  });
+  const app = express();
+  app.use(i18nextMiddleware.handle(i18next)); 
+  global.authentication = authentication;
 
 // Body parser
 app.use(express.json({ limit: '10mb' }));
@@ -67,19 +167,21 @@ app.use(compression());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Mount routers
-app.use('/api/auth', require('./routes/auth'));
-app.use('/api/reviews', require('./routes/reviews'));
-app.use('/api/categories', require('./routes/categories'));
-app.use('/api/roles', require('./routes/roles'));
-app.use('/api/permissions', require('./routes/permissions'));
-app.use('/api/users', require('./routes/users'));
-app.use('/api/sections', require('./routes/sections'));
+// app.use('/api/auth', require('./routes/auth'));
+// app.use('/api/reviews', require('./routes/reviews'));
+// app.use('/api/categories', require('./routes/categories'));
+// app.use('/api/roles', require('./routes/roles'));
+// app.use('/api/permissions', require('./routes/permissions'));
+// app.use('/api/users', require('./routes/users'));
+// app.use('/api/sections', require('./routes/sections'));
 // app.use('/api/uploads', require('./routes/uploads'));
-app.use('/api/articles', require('./routes/articles'));
+// app.use('/api/articles', require('./routes/articles'));
 // Re-route comment routes
-app.use('/api/reviews/:reviewSlug/comments', require('./routes/comments'));
-app.use('/api/comments', require('./routes/comments'));
+// app.use('/api/reviews/:reviewSlug/comments', require('./routes/comments'));
+// app.use('/api/comments', require('./routes/comments'));
 
+
+app.use(require("./routes/index"));
 // API documentation route
 app.get('/api/docs', (req, res) => {
   res.status(200).json({

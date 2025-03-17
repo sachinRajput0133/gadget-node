@@ -1,0 +1,6 @@
+{
+    "payment": {
+      "linkNotGenerated": "Unable to generate payment link due to technical issue. Please try after some time.",
+      "unableToMakePayment": "Unable to make payment due to technical issue. Please try after some time."
+    }
+  }

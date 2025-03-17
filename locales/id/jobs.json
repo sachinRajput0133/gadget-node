@@ -1,0 +1,22 @@
+{
+  "jobs": {
+    "get": "Pekerjaan telah berhasil diambil.",
+    "findAll": "Semua pekerjaan telah berhasil diambil.",
+    "jobCreateSuccess": "Job Listing berhasil diupload.",
+    "jobtypeCreateSuccess": "Tipe pekerjaan berhasil ditambahkan.",
+    "cannotUpdateJob": "Anda tidak dapat memperbarui pekerjaan karena masalah teknis. Silakan coba setelah beberapa waktu.",
+    "jobUpdateSuccess": "Informasi pekerjaan telah diperbarui.",
+    "jobUpdateError": "Anda tidak dapat memperbarui lowongan ini karena menerima tanggapan dari kandidat.",
+    "delete": "Informasi pekerjaan telah dihapus.",
+    "delete_error": "Kesalahan terjadi saat menghapus pekerjaan.",
+    "update": "Informasi pekerjaan berhasil diperbarui.",
+    "activate": "Pekerjaan diaktifkan.",
+    "deactivate": "Pekerjaan dinonaktifkan.",
+    "inDraft":"Harap lengkapi informasi pekerjaan Anda sebelum mengaktifkan.",
+    "bulkJobCreated": "Semua Pekerjaan berhasil ditambahkan",
+    "noVacancyLeft":"Anda tidak dapat memperbarui status kandidat, karena tidak ada lowongan tersisa di pekerjaan ini.",
+    "mailAlreadyOpened":"Kandidat telah melihat email pekerjaan ini",
+    "notFound":"Job not Found"
+
+  }
+}

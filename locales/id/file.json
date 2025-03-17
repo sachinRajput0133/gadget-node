@@ -1,0 +1,11 @@
+{
+  "file": {
+    "upload": "File berhasil diupload.",
+    "uploadMultiple": "File berhasil diupload",
+    "folderRequired": "Bidang folder wajib diisi!",
+    "fileNotUploaded": "Tidak ada file yang diunggah!",
+    "remove": "File Dihapus!",
+    "noFileFound": "Berkas tidak ditemukan!",
+    "fileType": "Hanya file gambar yang diizinkan."
+  }
+}

@@ -31,6 +31,7 @@ exports.getPermissions = asyncHandler(async (req, res, next) => {
 exports.getPermissionsByModule = asyncHandler(async (req, res, next) => {
   const permissions = await Permission.find().sort({ module: 1, name: 1 });
   
+  console.log("🚀 ~ exports.getPermissionsByModule=asyncHandler ~ permissions:", permissions)
   // Group permissions by module
   const permissionsByModule = permissions.reduce((result, permission) => {
     const module = permission.module || 'general';

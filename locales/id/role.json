@@ -1,0 +1,14 @@
+{
+  "role": {
+    "create": "Anda berhasil membuat pekerjaan ini.",
+    "createError": "Maaf, pekerjaan tidak dibuat.",
+    "update": "Anda memperbarui pekerjaan ini.",
+    "delete": "Anda menghapus pekerjaan ini.",
+    "findAll": "Semua Pekerjaan berhasil diambil.",
+    "findOne": "Pekerjaan berhasil diambil.",
+    "alreadyFound": "Pekerjaan sudah ada!",
+    "updateError": "Pekerjaan tidak ditemukan atau Anda tidak dapat memperbarui pekerjaan ini.",
+    "deleteError": "Pekerjaan tidak ditemukan atau Anda tidak dapat menghapus pekerjaan ini.",
+    "roleNotFound": "Pekerjaan tidak ditemukan!"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "jobs": {
+    "get": "Job has been fetched successfully.",
+    "findAll": "All jobs have been fetched successfully.",
+    "jobCreateSuccess": "Job posted successfully.",
+    "cannotUpdateJob": "You can't update the job due to technical issue. Please try after sometime.",
+    "jobtypeCreateSuccess": "Job type added successfully.",
+    "jobUpdateSuccess": "Job details updated successfully.",
+    "jobUpdateError": "You can't update this job as you received responses from candidates.",
+    "delete": "Job information has been deleted.",
+    "deleteError": "An error occurred while deleting a job.",
+    "update": "Job updated successfull",
+    "activate": "Job activated.",
+    "deactivate": "Job deactivated.",
+    "inDraft": "Please complete your job information before activate.",
+    "bulkJobCreated": "All Jobs added successfully",
+    "noVacancyLeft": "You cannot update candidate status as there are no vacancies left in this job.",
+    "noFound": "Job does not exist.",
+    "jobPostNotPermitted": "You can add new jobs only after your profile is approved.",
+    "employerInactive": "Can't update inactive employer's job.",
+    "mailAlreadyOpened": "Candidate have already viewed this job email",
+    "notFound": "Job not Found",
+    "expired": "This job is expired.",
+    "expiredActivate": "Can not activate expired job. Please change expiry date."
+  }
+}
