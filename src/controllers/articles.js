@@ -47,7 +47,7 @@ const getArticleById = catchAsync(async (req, res, next) => {
 const createArticle = catchAsync(async (req, res, next) => {
   // Add user to req.body
   req.body.author = req.user.id;
-  const result = await articlesService.create(req);
+  const result = await articlesService.createArticle(req);
   util.successResponse(result, res);
 });
 

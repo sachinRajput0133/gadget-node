@@ -5,12 +5,12 @@ const { validateRequest } = require('../../helpers/utils/validator');
 const articleValidation = require('../../helpers/utils/validations/article.validation');
 
 // Get all articles (public)
-router.get('/',authentication, articleController.getArticles);
+router.post('/list',authentication, articleController.getArticles);
 router.get('/slug/:slug', articleController.getArticleBySlug);
 router.get('/:id',authentication, articleController.getArticleById);
 
 router.post(
-  '/',
+  '/create',
   authentication,
   // validateRequest(articleValidation.createArticle),
   articleController.createArticle

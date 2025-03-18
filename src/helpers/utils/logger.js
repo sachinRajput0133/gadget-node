@@ -1,63 +1,49 @@
-const winston = require('winston');
-const path = require('path');
+const { createLogger, format, transports } = require("winston");
+const moment = require("moment-timezone");
+const morgan = require('morgan');
 
-// Define log levels
-const levels = {
-  error: 0,
-  warn: 1,
-  info: 2,
-  http: 3,
-  debug: 4,
-};
-
-// Define log colors
-const colors = {
-  error: 'red',
-  warn: 'yellow',
-  info: 'green',
-  http: 'magenta',
-  debug: 'blue',
-};
-
-// Add colors to winston
-winston.addColors(colors);
-
-// Create log format
-const format = winston.format.combine(
-  winston.format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss:ms' }),
-  winston.format.printf(
-    (info) => `${info.timestamp} ${info.level}: ${info.message}`
-  )
-);
-
-// Define which transports the logger must use
-const transports = [
-  // Console transport for all logs
-  new winston.transports.Console({
-    format: winston.format.combine(
-      winston.format.colorize({ all: true }),
-      format
-    ),
-  }),
-  // File transport for error logs
-  new winston.transports.File({
-    filename: path.join('logs', 'error.log'),
-    level: 'error',
-    format,
-  }),
-  // File transport for all logs
-  new winston.transports.File({ 
-    filename: path.join('logs', 'combined.log'),
-    format,
-  }),
-];
-
-// Create the logger
-const logger = winston.createLogger({
-  level: process.env.NODE_ENV === 'development' ? 'debug' : 'info',
-  levels,
-  format,
-  transports,
+module.exports = createLogger({
+  transports: [
+    new transports.Console({
+      format: format.combine(
+        format.printf((info) => {
+          if (info.stack) {
+            return `${info.stack}`;
+          }
+          return `${info.message}`;
+        })
+      ),
+    }),
+    new transports.File({
+      filename: `logs/error/${moment().format("MMM-DD-YYYY")}.log`,
+      name: "file#error",
+      level: "error",
+      format: format.combine(
+        format.timestamp({ format: "MMM-DD-YYYY HH:mm:ss" }),
+        format.align(),
+        format.printf(
+          (info) => `${info.level}: ${[info.timestamp]}: ${info.stack}`
+        )
+      ),
+    }),
+    new transports.File({
+      filename: `logs/info/${moment().format("MMM-DD-YYYY")}.log`,
+      name: "file#info",
+      level: "info",
+      format: format.combine(
+        format.timestamp({ format: "MMM-DD-YYYY HH:mm:ss" }),
+        format.align(),
+        format.printf(
+          (info) => `${info.level}: ${[info.timestamp]}: ${info.message}`
+        )
+      ),
+    }),
+  ],
 });
-
-module.exports = logger;
+module.exports.morganInstance = morgan('dev', {
+  stream: {
+    write: (str) => {
+      logger.info(str);
+    },
+  },
+});

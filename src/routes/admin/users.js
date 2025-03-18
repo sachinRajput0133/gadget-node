@@ -16,20 +16,36 @@ const { protect, hasPermission } = require('../../middleware/auth');
 router.use(protect);
 
 // User management routes
-router
-  .route('/')
-  .get(hasPermission('users:list'), getUsers)
-  .post(hasPermission('users:create'), createUser);
+router.put(
+  '/list',
+  authentication, getUsers
+);
 
-router
-  .route('/:id')
-  .get(hasPermission('users:view'), getUser)
-  .put(hasPermission('users:update'), updateUser)
-  .delete(hasPermission('users:delete'), deleteUser);
+router.post(
+  '/create',
+  authentication, createUser
+);
+router.put(
+  '/:id',  authentication, updateUser
+);
+router.delete(
+  '/:id',  authentication, deleteUser
+);
+
+// router.patch(
+//   '/:id/toggle-status',
+//   authentication,  toggleUserStatus
+// );
+router.get('/:id',authentication, getUser);
+// router
+//   .route('/:id')
+//   .get(getUser)
+//   .put(updateUser)
+//   .delete(deleteUser);
 
 // Role assignment route
-router
-  .route('/:id/role')
-  .put(hasPermission('users:manage-roles'), changeUserRole);
+// router
+//   .route('/:id/role')
+//   .put(hasPermission('users:manage-roles'), changeUserRole);
 
 module.exports = router;

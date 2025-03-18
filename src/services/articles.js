@@ -3,13 +3,14 @@ const Article = require('../models/Article');
 const dbService = require('../helpers/utils/dbService');
 const { default: slugify } = require('slugify');
 const articleList = async (query) => {
-    return await dbService.getAllDocuments(Article, query, {
-        ...(query.page && query.limit ? { page: query?.page, 
-          limit: query?.limit, 
-          sort: query?.sort, 
-          select: "name code stateId countryId countryNm stateNm canDel isActive isDefault seq",
-          populate: query?.populate} : {pagination: true, sort: query?.sort, populate: query?.populate}),
-      });
+    return await dbService.getAllDocuments(Article, query);
+    //   return await dbService.getAllDocuments(Article, query, {
+    //     ...(query.page && query.limit ? { page: query?.page, 
+    //       limit: query?.limit, 
+    //       sort: query?.sort, 
+    //       select: "name code stateId countryId countryNm stateNm canDel isActive isDefault seq",
+    //       populate: query?.populate} : {pagination: true, sort: query?.sort, populate: query?.populate}),
+    //   });
 
   
 };
@@ -24,7 +25,7 @@ const articleDetail = async (req,res) => {
 
   return article;
 };
-const create = async (req) => {
+const createArticle = async (req) => {
     // Create slug from title if not provided
 //   if (!req.body.slug && req.body.title) {
 //     req.body.slug = slugify(req.body.title, { lower: true, strict: true });
@@ -64,7 +65,7 @@ const deleteArticle = async (req) => {
 module.exports = {
   articleList,
   articleDetail,
-  create,
+  createArticle,
   updateArticle,
   deleteArticle
 };

@@ -9,7 +9,7 @@ const articleValidation = require('../helpers/utils/validations/article.validati
 router.get('/', articleController.getArticles);
 
 // Get single article by slug (public)
-router.get('/slug/:slug', articleController.getArticleBySlug);
+// router.get('/slug/:slug', articleController.getArticleBySlug);
 
 // Get single article by ID (public)
 router.get('/:id', articleController.getArticleById);

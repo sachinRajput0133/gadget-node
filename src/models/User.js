@@ -44,6 +44,14 @@ const UserSchema = new mongoose.Schema(
       type: Date,
       default: Date.now,
     },
+    tokens: [
+      {
+        token: { type: String },
+        validateTill: { type: Date },
+        refreshToken: { type: String },
+        deviceDetail: { type: String },
+      },
+    ],
     password: {
       type: String,
       required: [true, 'Please add a password'],

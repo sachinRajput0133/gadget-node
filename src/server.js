@@ -4,6 +4,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 const morgan = require('morgan');
 const colors = require('colors');
+global.logger = require("../src/helpers/utils/logger");
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const helmet = require('helmet');
@@ -231,7 +232,7 @@ app.get('/api/docs', (req, res) => {
 app.use((req, res, next) => {
   next(new Error(`Route not found: ${req.originalUrl}`));
 });
-
+app.use(logger.morganInstance);
 // Error handler
 app.use(errorHandler);
 

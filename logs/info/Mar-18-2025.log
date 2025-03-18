@@ -1,0 +1,34 @@
+error: Mar-18-2025 12:54:27: 	Error - generateTokenManually jwt is not defined
+error: Mar-18-2025 21:01:50: 	articlesService.createArticle is not a function
+error: Mar-18-2025 21:01:50: 	articlesService.createArticle is not a function
+error: Mar-18-2025 21:02:09: 	articlesService.createArticle is not a function
+error: Mar-18-2025 21:02:09: 	articlesService.createArticle is not a function
+error: Mar-18-2025 21:03:26: 	articlesService.createArticle is not a function
+error: Mar-18-2025 21:05:19: 	Article validation failed: category: Please add a category, content: Please add content, title: Please add a title
+error: Mar-18-2025 21:05:19: 	Article validation failed: category: Please add a category, content: Please add content, title: Please add a title
+error: Mar-18-2025 21:05:29: 	Article validation failed: category: Please add a category, content: Please add content, title: Please add a title
+error: Mar-18-2025 21:05:29: 	Article validation failed: category: Please add a category, content: Please add content, title: Please add a title
+error: Mar-18-2025 21:05:45: 	Article validation failed: category: Please add a category, content: Please add content, title: Please add a title
+error: Mar-18-2025 21:07:52: 	Article validation failed: category: Please add a category, content: Please add content, title: Please add a title
+error: Mar-18-2025 21:08:35: 	Article validation failed: category: Please add a category, content: Please add content, title: Please add a title
+error: Mar-18-2025 21:08:52: 	Article validation failed: category: Please add a category, content: Please add content, title: Please add a title
+error: Mar-18-2025 21:22:16: 	Cast to ObjectId failed for value "aq-1" (type string) at path "_id" for model "Article"
+error: Mar-18-2025 21:22:16: 	Cast to ObjectId failed for value "aq-1" (type string) at path "_id" for model "Article"
+error: Mar-18-2025 21:22:41: 	Cast to ObjectId failed for value "aq-1" (type string) at path "_id" for model "Article"
+error: Mar-18-2025 21:22:41: 	Cast to ObjectId failed for value "aq-1" (type string) at path "_id" for model "Article"
+error: Mar-18-2025 21:23:58: 	Cast to ObjectId failed for value "aq-1" (type string) at path "_id" for model "Article"
+error: Mar-18-2025 21:47:09: 	Cast to ObjectId failed for value "aq-1" (type string) at path "_id" for model "Article"
+error: Mar-18-2025 21:47:09: 	Cast to ObjectId failed for value "aq-1" (type string) at path "_id" for model "Article"
+error: Mar-18-2025 21:52:46: 	Cast to ObjectId failed for value "aq" (type string) at path "_id" for model "Article"
+error: Mar-18-2025 21:52:46: 	Cast to ObjectId failed for value "aq" (type string) at path "_id" for model "Article"
+error: Mar-18-2025 21:53:12: 	Cast to ObjectId failed for value "aq-1" (type string) at path "_id" for model "Article"
+error: Mar-18-2025 21:53:12: 	Cast to ObjectId failed for value "aq-1" (type string) at path "_id" for model "Article"
+error: Mar-18-2025 21:53:28: 	Cast to ObjectId failed for value "aq-1" (type string) at path "_id" for model "Article"
+error: Mar-18-2025 22:01:36: 	Cast to ObjectId failed for value "aq-1" (type string) at path "_id" for model "Article"
+error: Mar-18-2025 22:01:36: 	Cast to ObjectId failed for value "aq-1" (type string) at path "_id" for model "Article"
+error: Mar-18-2025 22:06:48: 	Cast to ObjectId failed for value "aq-1" (type string) at path "_id" for model "Article"
+error: Mar-18-2025 22:06:48: 	Cast to ObjectId failed for value "aq-1" (type string) at path "_id" for model "Article"
+error: Mar-18-2025 22:13:39: 	Cast to ObjectId failed for value "aq-1" (type string) at path "_id" for model "Article"
+error: Mar-18-2025 22:13:39: 	Cast to ObjectId failed for value "aq-1" (type string) at path "_id" for model "Article"
+error: Mar-18-2025 22:14:25: 	Cast to ObjectId failed for value "aq-1" (type string) at path "_id" for model "Article"
+error: Mar-18-2025 22:14:25: 	Cast to ObjectId failed for value "aq-1" (type string) at path "_id" for model "Article"
